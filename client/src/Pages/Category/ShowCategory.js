@@ -21,11 +21,15 @@ export default function ShowCategory() {
   }, []);
 
   const getCategory = async () => {
-    const response = await axios.get('/api/category/' + id);
+    const response = await axios.get(
+      '/api/category/' + id,
+    );
     setCategory(response.data);
   };
   const getFora = async () => {
-    const response = await axios.get('/api/forum/category/' + id);
+    const response = await axios.get(
+      '/api/forum/category/' + id,
+    );
     setFora(response.data);
   };
   const { user } = useContext(AuthContext);
@@ -38,7 +42,18 @@ export default function ShowCategory() {
     }
   };
   const deleteCategories = async (value, e) => {
-    alert(value);
+    if (user == null) {
+      alert('Bạn cần đăng nhập');
+      navigate('/auth/login');
+      return;
+    } else {
+      const dataSend = {
+        id:user._id
+      };
+      const response =await axios.post('/api/forum/delete/' + value,dataSend);
+      alert(response.data);
+      navigate('/');
+    }
   };
 
   return (

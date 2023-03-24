@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Button, TextField } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { Await, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Grid from '@mui/material/Grid';
 import { useParams } from 'react-router-dom';
@@ -43,11 +43,19 @@ export default function ShowThread() {
       setHasMore(false);
     }
   };
-  const deleteCategories =  (value, e) => {
-    alert(value);
-    const response = axios.get('/api/post/delete/' + value);
-    alert("success");
-    navigate('/');
+  const deleteCategories = async (value, e) => {
+    if (user == null) {
+      alert('Bạn cần đăng nhập');
+      navigate('/auth/login');
+      return;
+    } else {
+      const dataSend = {
+        id:user._id
+      };
+      const response =await axios.post('/api/post/delete/' + value,dataSend);
+      alert(response.data);
+      navigate('/');
+    }
   };
   const handleReply = async (event) => {
     event.preventDefault();
@@ -132,7 +140,9 @@ export default function ShowThread() {
             value={replyContent}
             onChange={(e) => setReplyContent(e.target.value)}
           />
-          <Button type="submit">Reply</Button>
+          <Button type="submit" onClick={() => alert('Bạn chưa đăng nhập')}>
+            Reply
+          </Button>
         </form>
       )}
     </div>

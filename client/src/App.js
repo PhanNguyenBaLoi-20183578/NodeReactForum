@@ -30,7 +30,6 @@ import './Pages/Home.css';
 
 function App() {
   const [user, setUser] = useState(null);
-  const [isInitiated, setIsInitiated] = useState(false);
 
   useEffect(() => {
     init();
@@ -38,10 +37,12 @@ function App() {
 
   const init = async () => {
     const token = localStorage.getItem('token');
-    const response = await axios.get('/api/auth/init', { params: { token } });
+    const response = await axios.get(
+      '/api/auth/init',
+      { params: { token } },
+    );
     const { user } = response.data;
-    //setUser(user);
-    setIsInitiated(true);
+    setUser(user);
   };
 
   const handleLogout = () => {
@@ -51,7 +52,7 @@ function App() {
 
   return (
     <div>
-      {isInitiated && (
+      {true && (
         <AuthContext.Provider value={{ user, setUser, handleLogout }}>
           <Router>
             <Navbar />
