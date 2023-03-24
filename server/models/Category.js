@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 const CategorySchema = new Schema({
     title: String,
     createdAt: String,
-    NumberForum:Number
+    NumberForum:Number,
+    userId: mongoose.ObjectId
 });
 
 

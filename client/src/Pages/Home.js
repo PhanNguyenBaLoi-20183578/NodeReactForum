@@ -18,20 +18,20 @@ export default function Home() {
   }, []);
 
   const getCategories = async () => {
-    const response = await axios.get(
-      '/api/category',
-    );
+    const response = await axios.get('/api/category');
     setCategories(response.data);
   };
   const deleteCategories = async (value, e) => {
     if (user == null) {
       alert('Bạn cần đăng nhập');
       navigate('/auth/login');
-    } else if(!user.isAdmin){
+      return;
+    } else if (!user.isAdmin) {
       alert('Bạn không phải là admin');
-    }
-    else{
-      alert('Bạn là admin');
+    } else if (user.isAdmin) {
+      const response = axios.post('/api/category/delete/' + value);
+      alert('delete');
+      navigate('/');
     }
   };
   const navigate = useNavigate();

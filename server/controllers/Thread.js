@@ -29,7 +29,7 @@ router.post("/delete/:id", async (req, res) => {
     res.send("success");
     return;
   } else {
-    res.send("Bạn không có quyền xóa bài người khác");
+    res.send("Bạn không có quyền xóa bài người khác!");
   }
 });
 

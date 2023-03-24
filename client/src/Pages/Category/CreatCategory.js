@@ -2,8 +2,9 @@ import { Button, TextField } from '@mui/material';
 import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import AuthContext from '../../Contexts/AuthContext';
 const CreateCategory = () => {
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const [title, setTitle] = useState('');
 
@@ -11,6 +12,7 @@ const CreateCategory = () => {
     event.preventDefault();
     const data = {
       title,
+      userId: user._id,
     };
     //thieu dau /trong /api=> sai dia chi,ko post dc.vc
     const response = await axios.post('/api/category/create', data);
