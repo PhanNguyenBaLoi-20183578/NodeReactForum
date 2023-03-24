@@ -1,5 +1,5 @@
 ﻿# NodeReactForum
-
+Require run in Window.
 Run server:
 
 ```
@@ -25,4 +25,6 @@ Run code:
     pip install -r requirement.txt
     python serverModel.py
 ```
+Run in docker:
+
 
