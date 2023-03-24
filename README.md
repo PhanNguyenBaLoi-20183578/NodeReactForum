@@ -1,6 +1,6 @@
 ﻿# NodeReactForum
 
-###Run server:
+Run server:
 
 ```
     cd server
@@ -8,7 +8,7 @@
     npm run dev
 ```
 
-###Run client:
+Run client:
 
 ```
     cd client
@@ -16,8 +16,10 @@
     npm start
 ```
 
-###Run model classification spam:
-###Download file phobert_pre.pth in https://github.com/PhanNguyenBaLoi-20183578/RoBertClassification,move file to ./ServerModelAI
+Run model classification spam:
+Download file phobert_pre.pth in https://github.com/PhanNguyenBaLoi-20183578/RoBertClassification
+Move file to ./ServerModelAI
+Run code:
 ```
     cd ServerModelAi
     pip install -r requirement.txt
