@@ -1,0 +1,18 @@
+export const dataImg = [
+  'https://cdn.pixabay.com/photo/2023/02/12/23/32/lizard-7786211_640.jpg',
+  'https://cdn.pixabay.com/photo/2023/03/02/22/11/belgium-7826588__340.jpg',
+  'https://cdn.pixabay.com/photo/2023/03/03/17/35/gray-cat-7828134__340.jpg',
+  'https://cdn.pixabay.com/photo/2023/03/03/20/40/starling-7828426__340.jpg',
+  'https://cdn.pixabay.com/photo/2023/03/05/14/05/flowers-7831462__340.jpg',
+  'https://cdn.pixabay.com/photo/2023/01/21/13/39/trees-7733877_640.jpg',
+  'https://cdn.pixabay.com/photo/2023/03/03/17/36/peafowl-7828140__340.jpg',
+  'https://cdn.pixabay.com/photo/2022/06/09/18/58/amphibian-7253136__340.jpg',
+  'https://cdn.pixabay.com/photo/2023/01/21/22/33/hamburg-7735229__340.jpg',
+  'https://cdn.pixabay.com/photo/2023/02/24/20/16/cinereous-vulture-7811766__340.jpg',
+  'https://cdn.pixabay.com/photo/2023/02/17/19/59/dog-7796822__340.jpg',
+  'https://cdn.pixabay.com/photo/2023/01/10/09/44/koi-pond-7709388__340.jpg',
+  'https://cdn.pixabay.com/photo/2023/02/14/18/55/flowers-7790227__340.jpg',
+  'https://cdn.pixabay.com/photo/2023/02/08/07/32/vietnamese-woman-7775904__340.jpg',
+  'https://cdn.pixabay.com/photo/2023/02/11/13/43/building-7782841__340.jpg',
+  'https://cdn.pixabay.com/photo/2023/02/11/20/31/birds-7783664__340.jpg',
+];

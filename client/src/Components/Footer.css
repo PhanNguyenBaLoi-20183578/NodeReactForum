@@ -1,0 +1,10 @@
+.ender {
+    justify-content: space-between;
+    background-color: rgb(255, 119, 119);
+}
+.float{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+

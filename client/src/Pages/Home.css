@@ -1,0 +1,18 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(0, 247, 255);
+}
+.content {  
+    background-color: rgb(0, 132, 255);
+}
+.body {
+    min-height: 800px; 
+    background-color: rgb(90, 102, 90);
+}
+.ender {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(255, 119, 119);
+}
+
