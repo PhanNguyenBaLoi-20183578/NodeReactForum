@@ -16,6 +16,22 @@ router.post("/create", async (req, res) => {
   await newThread.save();
   res.send(newThread);
 });
+router.post("/delete/:id", async (req, res) => {
+  const thread = await Thread.findById(req.params.id);
+  if (req.body.id == thread.userId) {
+    thread.deleteOne({ _id: req.params.id }, function (err) {
+      if (err) {
+        console.error(err);
+      } else {
+        console.log("Document deleted successfully.");
+      }
+    });
+    res.send("success");
+    return;
+  } else {
+    res.send("Bạn không có quyền xóa bài người khác");
+  }
+});
 
 router.get("/:id", async (req, res) => {
   const thread = await Thread.findById(req.params.id);

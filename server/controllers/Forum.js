@@ -4,11 +4,12 @@ const Forum = require("../models/Forum");
 const Thread = require('../models/Thread');
 
 router.post('/create',async (req,res)=>{
-    const {title,categoryId}= req.body;
+    const {title,categoryId,userId}= req.body;
     const newForum = Forum({
         title,
         createdAt: Date(),
-        categoryId
+        categoryId,
+        userId
     });
 
     await newForum.save();
@@ -27,7 +28,22 @@ router.get('/:id', async (req,res)=>{
 
     res.send(forum);
 })
-
+router.post("/delete/:id", async (req, res) => {
+    const thread = await Forum.findById(req.params.id);
+    if (req.body.id == thread.userId) {
+      thread.deleteOne({ _id: req.params.id }, function (err) {
+        if (err) {
+          console.error(err);
+        } else {
+          console.log("Document deleted successfully.");
+        }
+      });
+      res.send("success");
+      return;
+    } else {
+      res.send("Bạn không có quyền xóa bài người khác");
+    }
+  });
 router.get('/category/:id',async (req,res)=>{
     //console.log(req.params.id);
     const forums= await Forum.find({categoryId: req.params.id});

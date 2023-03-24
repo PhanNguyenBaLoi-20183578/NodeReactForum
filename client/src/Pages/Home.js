@@ -1,28 +1,38 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import List from '@mui/material/List';
-import ListItemText from '@mui/material/ListItemText';
 import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
 import './Home.css';
 import Grid from '@mui/material/Grid';
+import AuthContext from '../Contexts/AuthContext';
 
 export default function Home() {
   const [categories, setCategories] = useState([]);
-  const [idcat, setIdCat] = useState('');
+  const { user } = useContext(AuthContext);
   useEffect(() => {
     getCategories();
   }, []);
 
   const getCategories = async () => {
-    const response = await axios.get('/api/category');
+    const response = await axios.get(
+      '/api/category',
+    );
     setCategories(response.data);
   };
   const deleteCategories = async (value, e) => {
-    alert(value);
+    if (user == null) {
+      alert('Bạn cần đăng nhập');
+      navigate('/auth/login');
+    } else if(!user.isAdmin){
+      alert('Bạn không phải là admin');
+    }
+    else{
+      alert('Bạn là admin');
+    }
   };
   const navigate = useNavigate();
   return (
@@ -75,11 +85,12 @@ export default function Home() {
                       ></img>
                     </Grid>
                     <Grid item xs={11} md={11}>
-                    <font size="+3" color='blue' >{cat.title}</font>
-                      
+                      <font size="+3" color="blue">
+                        {cat.title}
+                      </font>
                     </Grid>
-                    <Grid item xs={1} md={1} >
-                    <font size="+1"  >{cat.NumberForum} Chủ đề</font>
+                    <Grid item xs={1} md={1}>
+                      <font size="+1">{cat.NumberForum} Chủ đề</font>
                     </Grid>
                     <Grid item xs={6} md={8}>
                       {'Cập nhật gần nhất:  ' + cat.createdAt}

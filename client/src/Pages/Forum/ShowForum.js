@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import List from '@mui/material/List';
-import ListItemText from '@mui/material/ListItemText';
 import ListItem from '@mui/material/ListItem';
 import './Forum.css';
 import Grid from '@mui/material/Grid';
-
+import AuthContext from '../../Contexts/AuthContext';
 export default function ShowForum() {
+  const { user } = useContext(AuthContext);
   const [forum, setForum] = useState(null);
   const [threads, setThreads] = useState([]);
   const { id } = useParams();
@@ -20,8 +20,6 @@ export default function ShowForum() {
   }, []);
 
   const getForum = async () => {
-    //thieu id,vv
-    //const response = await axios.get('/api/forum/');
     const response = await axios.get('/api/forum/' + id);
     setForum(response.data);
   };
@@ -30,7 +28,18 @@ export default function ShowForum() {
     setThreads(response.data);
   };
   const deleteCategories = async (value, e) => {
-    alert(value);
+    if (user == null) {
+      alert('Bạn cần đăng nhập');
+      navigate('/auth/login');
+      return;
+    } else {
+      const dataSend = {
+        id:user._id
+      };
+      const response =await axios.post('/api/thread/delete/' + value,dataSend);
+      alert(response.data);
+      navigate('/');
+    }
   };
   const navigate = useNavigate();
   return (

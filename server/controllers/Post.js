@@ -38,18 +38,24 @@ router.post("/create", async (req, res) => {
     //console.log("save");
     await newPost.save();
   }
-  console.log(newPost);
 
   res.send(newPost);
 });
-router.get("/delete/:id", async (req, res) => {
-  Post.deleteOne({ _id: req.params.id }, function (err) {
-    if (err) {
-      console.error(err);
-    } else {
-      console.log("Document deleted successfully.");
-    }
-  });
+router.post("/delete/:id", async (req, res) => {
+  const post = await Post.findById(req.params.id);
+  if (req.body.id == post.userId) {
+    Post.deleteOne({ _id: req.params.id }, function (err) {
+      if (err) {
+        console.error(err);
+      } else {
+        console.log("Document deleted successfully.");
+      }
+    });
+    res.send("success");
+    return;
+  } else {
+    res.send("Bạn không có quyền xóa bài người khác");
+  }
 });
 
 router.get("/thread/:id", async (req, res) => {

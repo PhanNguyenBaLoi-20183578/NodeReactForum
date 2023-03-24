@@ -6,6 +6,7 @@ const ForumSchema = new Schema({
     createdAt: String,
     categoryId: mongoose.ObjectId,
     NumberThread:Number,
+    userId: mongoose.ObjectId
 });
 
 
